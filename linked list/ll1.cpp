@@ -34,6 +34,29 @@ Node* removeTail(Node*head){
   temp->next=nullptr;
   return head;
 }
+Node* deletek(Node* head,int k){
+  if(head==NULL)return NULL;
+  if(k==1){
+    Node*temp=head;
+    head=head->next;
+    free(temp);
+    return head;
+  }
+  int cnt=0;
+  Node* prev=NULL;
+  Node*temp=head;
+  while(temp!=NULL){
+    cnt++;
+    if(cnt==k){
+      prev->next=prev->next->next;
+      free(temp);
+      break;
+    }
+    prev=temp;
+    temp=temp->next;
+  }
+  return head;
+}
 
 
 Node* convertArray2LL(vector<int> &v){
@@ -48,11 +71,13 @@ Node* convertArray2LL(vector<int> &v){
 
 }
 int main(){
-  vector<int> v={100,2,3,4,5};
+  vector<int> v={100,2,3,4,5,8};
   Node* head=convertArray2LL(v);
+  
   head=inserthead(head,10);
   head=deletehead(head);
   head=removeTail(head);
+  head=deletek(head,4);
   Node* temp=head;
   
   
