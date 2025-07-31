@@ -14,6 +14,7 @@ class Node{
   }
 };
 Node* deletehead(Node* head){
+  if(head==NULL)return head;
   Node* temp=head;
   head=head->next;
   free(temp);
@@ -22,6 +23,16 @@ Node* deletehead(Node* head){
 Node *inserthead(Node*head,int val){
   Node*temp=new Node(val,head);
   return temp;
+}
+Node* removeTail(Node*head){
+  if(head==NULL || head->next==NULL) return NULL;
+  Node*temp=head;
+  while(temp->next->next!=NULL){
+    temp=temp->next;
+  }
+  free(temp->next);
+  temp->next=nullptr;
+  return head;
 }
 
 
@@ -37,10 +48,11 @@ Node* convertArray2LL(vector<int> &v){
 
 }
 int main(){
-  vector<int> v={10,2,3,4,5};
+  vector<int> v={100,2,3,4,5};
   Node* head=convertArray2LL(v);
   head=inserthead(head,10);
   head=deletehead(head);
+  head=removeTail(head);
   Node* temp=head;
   
   
