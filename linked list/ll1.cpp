@@ -70,14 +70,74 @@ Node* convertArray2LL(vector<int> &v){
  return head;
 
 }
+Node* insertk(Node* head,int el,int k){
+  if(head==NULL){
+    if(k==1){
+      return new Node(el,head);
+
+    }
+    else return NULL;
+  }
+  if(k==1){
+    Node* temp=head;
+    Node* newNode=new Node(el,head);
+    return newNode;
+  }
+  int cnt=0;
+  Node*temp=head;
+  while(temp!=NULL){
+    cnt++;
+    if(cnt==k-1){
+      Node*x=new Node(el);
+      x->next=temp->next;
+
+      temp->next=x;
+      break;
+
+    }
+    temp=temp->next;
+  }
+  return head;
+
+
+}
+Node* insertbeforevalue(Node* head,int el,int val){
+  if(head==NULL){
+     return NULL;
+  }
+  if(head->data==val){
+    Node* temp=head;
+    Node* newNode=new Node(el,head);
+    return newNode;
+  }
+  int cnt=0;
+  Node*temp=head;
+  while(temp->next!=NULL){
+    if(temp->next->data==val){
+      Node* x=new Node(el,temp->next);
+      temp->next=x;
+      break;
+
+    }
+    temp=temp->next;
+  }
+   
+    
+  
+  return head;
+
+
+}
 int main(){
   vector<int> v={100,2,3,4,5,8};
   Node* head=convertArray2LL(v);
   
-  head=inserthead(head,10);
-  head=deletehead(head);
-  head=removeTail(head);
-  head=deletek(head,4);
+  //head=inserthead(head,10);
+  //head=deletehead(head);
+ // head=removeTail(head);
+  //head=deletek(head,4);
+   head=insertk(head,77,1);
+   head=insertbeforevalue(head,44,5);
   Node* temp=head;
   
   
