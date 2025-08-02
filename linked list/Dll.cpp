@@ -124,12 +124,53 @@ void deleteNode(Node*temp){
   
 
 }
-Node* insertHead(Node*head,int val){
+Node* insertbeforeHead(Node*head,int val){
   Node*newhead=new Node(val,head,nullptr);
   head->back=newhead;
   return newhead;
 }
+Node* insertafterTail(Node*head,int val){
+  Node*temp=head;
+  while(temp->next!=NULL){
+    temp=temp->next;
+  }
+  Node*newTail=new Node(val,nullptr,temp);
+  temp->next=newTail;
+  return head;
+}
+Node* insertatbeforeTail(Node*head,int val){
+  Node*tail=head;
+  while(tail->next!=NULL){
+    tail=tail->next;
+  }
+  Node* prev=tail->back;
+  Node*newTail=new Node(val,tail,prev);
+  prev->next=newTail;
+  tail->back=newTail;
+  return head;
+}
+Node* insertbeforekelement(Node*head,int val,int k){
+  if(k==1) return insertbeforeHead(head,val);
+  Node*temp=head;
+  int cnt=0;
+  while(temp!=NULL){
+    cnt++;
+    if(cnt==k)break;
+    temp=temp->next;
+  }
+  Node*prev=temp->back;
+  Node* newNode=new Node(val,temp,prev);
+  prev->next=newNode;
+  temp->back=newNode;
+  return head;
+}
+void insertbeforegivennode(Node*node,int val){
+  Node* prev=node->back;
+  Node* newNode=new Node(val,node,prev);
+  prev->next=newNode;
+  node->back=newNode;
 
+}
 
 
 
@@ -140,7 +181,12 @@ int main(){
   //head=deletetail(head);
   //head=deletek(head,2);
   //deleteNode(head->next->next->next->back->back->next);
-  head=insertHead(head,10);
+  //head=insertbeforeHead(head,10);
+  //head=insertafterTail(head,11);
+  //head=insertatbeforeTail(head,15);
+  //head=insertbeforekelement(head,17,3);
+  insertbeforegivennode(head->next->next->next->back,76);
+
   print(head);
 
 
