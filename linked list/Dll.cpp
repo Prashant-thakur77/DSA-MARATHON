@@ -39,9 +39,108 @@ Node* print(Node*head){
   cout<<endl;
 
 }
+Node*deletehead(Node*head){
+  if(head  ==NULL ||head->next==NULL)return NULL;
+  Node*prev=head;
+  head=head->next;
+  head->back=nullptr;
+  prev->next=nullptr;
+  free(prev);
+  return head;
+  
+
+}
+Node*deletetail(Node*head){
+  if(head==NULL || head->next==NULL)return NULL;
+  Node*temp=head;
+  while(temp->next!=NULL){
+    
+    temp=temp->next;
+  }
+  Node* prev=temp->back;
+  prev->next=nullptr;
+  temp->back=nullptr;
+  free(temp);
+  return head;
+
+
+
+  
+}
+Node*deletek(Node*head,int k){
+  if(head==NULL) return NULL;
+  int cnt=0;
+  Node*temp=head;
+  while(temp!=NULL){
+    cnt++;
+    if(cnt==k)break;
+    temp=temp->next;
+    
+  }
+  Node*prev=temp->back;
+  Node*front=temp->next;
+  if(front==NULL && prev==NULL){
+    delete head;
+    return NULL;
+  }
+  else if(prev==NULL){
+    head=deletehead(head);
+    
+
+  }
+  else if(front==NULL){
+    head=deletetail(head);
+   
+  }
+  else{
+    prev->next=temp->next;//(prev->next=front)
+    front->back=temp->back;//(front->back=prev)
+    temp->next=nullptr;
+    temp->back=nullptr;
+    free(temp);
+    
+  }
+  return head;
+  
+
+}
+void deleteNode(Node*temp){
+  Node*prev=temp->back;
+  Node*front=temp->next;
+  if(front==NULL){
+    prev->next=nullptr;
+   
+    temp->back=nullptr;
+    free(temp);
+    return;
+
+
+  }
+  prev->next=front;
+  front->back=prev;
+  temp->next=nullptr;
+  temp->back=nullptr;
+  free(temp);
+  
+
+}
+Node* insertHead(Node*head,int val){
+  Node*newhead=new Node(val,head,nullptr);
+  head->back=newhead;
+  return newhead;
+}
+
+
+
+
 int main(){
   vector<int> v={1,2,3,4,5};
   Node*head=covertarrytoDLL(v);
+  //head=deletehead(head);
+  //head=deletetail(head);
+  //head=deletek(head,2);
+  //deleteNode(head->next->next->next->back->back->next);
+  head=insertHead(head,10);
   print(head);
 
 
