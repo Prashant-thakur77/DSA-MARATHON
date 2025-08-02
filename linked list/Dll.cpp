@@ -164,6 +164,19 @@ Node* insertbeforekelement(Node*head,int val,int k){
   temp->back=newNode;
   return head;
 }
+Node*reverseDLL(Node*head){
+  if(head==NULL || head->next==NULL) return head;
+  Node*last=NULL;
+  Node*curr=head;
+  while(curr!=NULL){
+    last=curr->back;
+    curr->back=curr->next;
+    curr->next=last;
+    curr=curr->back;
+  }
+  return last->back;
+
+}
 void insertbeforegivennode(Node*node,int val){
   Node* prev=node->back;
   Node* newNode=new Node(val,node,prev);
@@ -185,7 +198,8 @@ int main(){
   //head=insertafterTail(head,11);
   //head=insertatbeforeTail(head,15);
   //head=insertbeforekelement(head,17,3);
-  insertbeforegivennode(head->next->next->next->back,76);
+  //insertbeforegivennode(head->next->next->next->back,76);
+  head=reverseDLL(head);
 
   print(head);
 
