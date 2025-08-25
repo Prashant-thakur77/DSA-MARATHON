@@ -21,7 +21,7 @@ vector<double> avgON(vector<int>& X) {
     return A;
 }
 int main() {
-    cout<<"ROLL NO: "<<"24BCS085"<<endl;
+    cout<<"ROLL NO: "<<"24BCS094"<<endl;
     int n;
     cout << "Enter size of array: ";
     cin >> n;
