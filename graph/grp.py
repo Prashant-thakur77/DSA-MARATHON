@@ -12,7 +12,7 @@ with open("output.txt") as f:
 plt.figure(figsize=(8,6))
 
 # 🔹 Keep curves same
-plt.plot(n, t1, 'b-o', label="O(n^2) Method")
+plt.plot(n, t1, 'r-o', label="O(n^2) Method")
 plt.plot(n, t2, 'g-o', label="O(n) Method")
 
 plt.xlabel("Array size (n)")
@@ -20,11 +20,11 @@ plt.ylabel("Execution time (ms)")
 plt.title("Time Complexity Comparison: O(n^2) vs O(n)", fontsize=14)
 
 # 🔹 Roll number
-roll_number = "Roll No: 24BCS102"
+roll_number = "Roll No: 24BCS125"
 plt.text(
     0.02, 0.95, roll_number,
     transform=plt.gca().transAxes,
-    fontsize=12, color="RED",
+    fontsize=16, color="Black",
     ha="left", va="top"
 )
 
@@ -36,7 +36,7 @@ ax = plt.gca()
 for spine in ax.spines.values():
     spine.set_linewidth(2)      # make boundary thicker
     spine.set_linestyle("--")   # dashed border
-    spine.set_color("blue")     # change border color
+    spine.set_color("black")     # change border color
 
 plt.tight_layout()
 plt.show()
