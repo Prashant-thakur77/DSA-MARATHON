@@ -188,7 +188,7 @@ void insertbeforegivennode(Node*node,int val){
 
 
 int main(){
-  vector<int> v={1,2,3,4,5};
+  vector<int> v={1,3,5};
   Node*head=covertarrytoDLL(v);
   //head=deletehead(head);
   //head=deletetail(head);
