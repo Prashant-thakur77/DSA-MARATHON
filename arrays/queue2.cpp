@@ -24,10 +24,12 @@ class QUEUE{
   Node* front;
   Node* rear;
   int currSize=0;
+  int size;
   
-  QUEUE(){
+  QUEUE(int c){
     front=nullptr;
     rear=nullptr;
+    size=c;
     
     cout<<"Object initialized"<<endl;
 
@@ -36,6 +38,10 @@ class QUEUE{
   }
   
   void push(int x){
+    if(currSize==size){
+      cout<<"QUEUE is full"<<endl;
+      return;
+    }
     if(front==nullptr && rear==nullptr){
       Node* newNode=new Node(x);
       rear=newNode;
@@ -69,7 +75,7 @@ class QUEUE{
     
     currSize--;
   }
-  void size(){
+  void sizeQueue(){
     cout<<currSize<<endl;
 
   }
@@ -79,7 +85,7 @@ class QUEUE{
 
 
 int32_t main() {
-  QUEUE obj;
+  QUEUE obj(6);
 
   obj.push(1);
   obj.push(0);
@@ -93,7 +99,7 @@ int32_t main() {
   obj.push(101);
   obj.pop();
   obj.pop();
-  obj.size();
+  obj.sizeQueue();
 
 
   return 0;
