@@ -1,38 +1,28 @@
 #include <bits/stdc++.h>
 using namespace std;
-vector<double> avgON2(vector<int>& X) {
-    int n = X.size();
-    vector<double> A(n);
-    for (int i = 0; i < n; i++) {
-        long long s = 0;
-        for (int j = 0; j <= i; j++) s += X[j];
-        A[i] = (double)s / (i + 1);
+
+int evaluatePostfix(string exp) {
+    stack<int> st;
+    for (char ch : exp) {
+        if (ch == ' ') continue;
+        if (isdigit(ch)) st.push(ch - '0');
+        else {
+            int val2 = st.top(); st.pop();
+            int val1 = st.top(); st.pop();
+            switch (ch) {
+                case '+': st.push(val1 + val2); break;
+                case '-': st.push(val1 - val2); break;
+                case '*': st.push(val1 * val2); break;
+                case '/': st.push(val1 / val2); break;
+            }
+        }
     }
-    return A;
+    return st.top();
 }
-vector<double> avgON(vector<int>& X) {
-    int n = X.size();
-    vector<double> A(n);
-    long long s = 0;
-    for (int i = 0; i < n; i++) {
-        s += X[i];
-        A[i] = (double)s / (i + 1);
-    }
-    return A;
-}
+
 int main() {
-    cout<<"ROLL NO: "<<"24BCS094"<<endl;
-    int n;
-    cout << "Enter size of array: ";
-    cin >> n;
-    vector<int> X(n);
-    cout << "Enter " << n << " elements: ";
-    for (int i = 0; i < n; i++) cin >> X[i];
-    vector<double> A1 = avgON2(X), A2 = avgON(X);
-    cout << "\nO(n^2) result: ";
-    for (double v : A1) cout << v << " ";
-    cout << "\n";
-    cout << "O(n) result:   ";
-    for (double v : A2) cout << v << " ";
-    cout << "\n";
+    string exp = "2 3 1 * + 9 -";
+    cout << "Roll No: 24BCS085\n";
+    cout << "Result: " << evaluatePostfix(exp);
+    return 0;
 }
