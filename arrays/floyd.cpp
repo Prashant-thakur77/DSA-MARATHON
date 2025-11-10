@@ -22,13 +22,13 @@ void floyd(vector<vector<int>> &dist){
 }
 
 void solve() {
-    int INF = 100000000;
+    int infi = 100000000;
     vector<vector<int>> dist = {
-        {0, 4, INF, 5, INF},
-        {INF, 0, 1, INF, 6},
-        {2, INF, 0, 3, INF},
-        {INF, INF, 1, 0, 2},
-        {1, INF, INF, 4, 0}
+        {0, 4, infi, 5, infi},
+        {infi, 0, 1, infi, 6},
+        {2, infi, 0, 3, infi},
+        {infi, infi, 1, 0, 2},
+        {1, infi, infi, 4, 0}
     };
     floyd(dist);
     for(int i=0;i<dist.size();i++){
